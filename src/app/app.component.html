@@ -1,21 +1,69 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<nav class="navbar navbar-dark bg-dark">
+  Angular power
+</nav>
+
+<div class="container">
+  <div class="row justify-content-center p-2">
+    <h1>Employee registration</h1>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="employeeName" placeholder="Enter Employee Name" required>
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control" [(ngModel)]="employeeAge" placeholder="Enter Employee Age" required>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="employeeAddress" placeholder="Enter Employee Address" required>
+  </div>
+  <div class="form-group">
+    <button (click)="CreateRecord()" class="btn btn-primary"
+      [disabled]="!employeeName || !employeeAge || !employeeAddress">Create Employee</button>
+  </div>
+
+  <div class="row p-2">
+    <div class="col-md-12 justify-content-center p-2">
+      <h4>All Employee Data</h4>
+    </div>
+    <table class="table table-dark" *ngFor="let item of employee">
+
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+
+      <tbody *ngIf="!item.isEdit; else elseBlock">
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.age }}</td>
+          <td>{{ item.address }}</td>
+          <td>
+            <i (click)="editRecord(item)" class="fas fa-edit fa-lg"></i>
+            <i (click)="deleteRecord(item.id)" class="fas fa-trash-alt fa-lg"></i>
+          </td>
+        </tr>
+      </tbody>
+
+      <ng-template #elseBlock>
+
+        <tbody *ngFor="let item of employee">
+          <tr>
+            <td><input type="text" class="form-control" [(ngModel)]="item.editName"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="item.editAge"></td>
+            <td><input type="text" class="form-control" [(ngModel)]="item.editAddress"></td>
+            <td>
+              <i (click)="item.isEdit = false" class="far fa-window-close fa-lg"></i>
+              <i (click)="updateRecord(item)" class="fas fa-check-square fa-lg"></i>
+            </td>
+          </tr>
+        </tbody>
+
+      </ng-template>
+
+    </table>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>
