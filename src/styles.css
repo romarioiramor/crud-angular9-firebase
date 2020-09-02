@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+.container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.edit {
+  display: block;
+  margin: 20px 35px;
+}
+
+.navbar {
+  color: white;
+  display: block;
+  text-align: center;
+  align-items: center;
+  font-weight: 900;
+}
+
+button {
+  display: block;
+  width: 100%;
+}
+
+span {
+  text-align: end;
+  display: block;
+  margin-top: -24px;
+}

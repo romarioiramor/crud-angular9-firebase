@@ -1,8 +1,8 @@
 <nav class="navbar navbar-dark bg-dark">
-  Angular power
+  I Love <b style="color: red;">Angular</b> and <b style="color: yellow">Firebase</b>
 </nav>
 
-<div class="container">
+<div class="container jumbotron">
   <div class="row justify-content-center p-2">
     <h1>Employee registration</h1>
   </div>
@@ -22,7 +22,7 @@
 
   <div class="row p-2">
     <div class="col-md-12 justify-content-center p-2">
-      <h4>All Employee Data</h4>
+      <h4>Employee Data Basic</h4>
     </div>
     <table class="table table-dark" *ngFor="let item of employee">
 
@@ -38,10 +38,13 @@
         <tr>
           <td>{{ item.name }}</td>
           <td>{{ item.age }}</td>
-          <td>{{ item.address }}</td>
-          <td>
-            <i (click)="editRecord(item)" class="fas fa-edit fa-lg"></i>
-            <i (click)="deleteRecord(item.id)" class="fas fa-trash-alt fa-lg"></i>
+          <td>{{ item.address }}
+            <span>
+
+              <i (click)="editRecord(item)" class="fas fa-edit fa-lg"></i>
+              <i (click)="deleteRecord(item.id)" class="fas fa-trash-alt fa-lg"></i>
+            </span>
+
           </td>
         </tr>
       </tbody>
@@ -53,11 +56,10 @@
             <td><input type="text" class="form-control" [(ngModel)]="item.editName"></td>
             <td><input type="number" class="form-control" [(ngModel)]="item.editAge"></td>
             <td><input type="text" class="form-control" [(ngModel)]="item.editAddress"></td>
-            <td>
+            <span class="edit">
               <i (click)="item.isEdit = false" class="far fa-window-close fa-lg"></i>
               <i (click)="updateRecord(item)" class="fas fa-check-square fa-lg"></i>
-            </td>
-          </tr>
+            </span>
         </tbody>
 
       </ng-template>
